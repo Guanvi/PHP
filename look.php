@@ -53,11 +53,11 @@ include_once("conn/conn.php");
 	$type=$_GET['type'];
 	echo $type;
 	$sqlstr = "select * from tb_demo02 where type='$type' order by id";
-	$result = mysqli_query($conn,$sqlstr);
+	$result = $conn->query($sqlstr);
 
-	while ($rows = mysqli_fetch_row($result)){
+	while ($rows =$result->fetch()){
 		echo "<tr>";
-		for($i = 0; $i < count($rows); $i++){
+		for($i = 0; $i <$result->columnCount(); $i++){
 			echo "<td height='25' align='center' class='m_td'>".$rows[$i]."</td>";
 		}
 		echo "<td align='center' class='m_td'><a href='#'>修改</a>/<a href=delete.php?action=del&id=".$rows[0]." onclick='return del();'>删除</a></td>";

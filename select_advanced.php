@@ -57,6 +57,7 @@ include_once("conn/conn.php");
     </form>
      </tr>
   </br>
+  </br>
   <tr>
     <td align="center" width="5%" height="25" class="top">id</td>
     <td align="center" width="30%" class="top">书名</td>
@@ -78,15 +79,18 @@ include_once("conn/conn.php");
 		//echo $type;
 		//echo $firstPrice;
 		//echo $secondPrice;
-		$str="SELECT * FROM tb_demo02 WHERE type='$type'";
+		if(!$firstPrice or !$secondPrice)
+		{
+			$str="SELECT * FROM tb_demo02 WHERE type='$type'";
+		}else{
+			$str="SELECT * FROM tb_demo02 WHERE type='$type' AND price BETWEEN $firstPrice AND $secondPrice";
+		}
 		//$result=$conn->query("SELECT * FROM tb_demo02 WHERE type='$type'");
 		$result=$conn->query($str);
-		$row=$result->fetchAll();
-		echo "Hello";
-		echo $row[0];
 
 
-		/*
+
+		
 		while($row=$result->fetch())
 		{
 
@@ -100,7 +104,7 @@ include_once("conn/conn.php");
 			echo "<td height='25' align='center' class='m_td'><a href='#'>修改</a>/<a href=delete.php?action=del&id=".$rows[0]." onclick='return del();'>删除</a></td>";
 			echo "</tr>";
 		}
-		*/
+		
 		echo "<br/>";
 	}else{
 		exit();

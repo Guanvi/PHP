@@ -40,7 +40,7 @@ include_once("conn/conn.php");
 <table width="90%"  border="0" cellpadding="0" cellspacing="0">
   </br>
   </br>
-  <form name="intSelect" method="post" action="<?php echo htmlspecialchars($_SERVER['$PHP_SELF']);?>">
+  <form name="intSelect" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
 	<input type="text" name="select">&emsp;
 	<input type="submit" name="Submit" value="查询">
     </form>
